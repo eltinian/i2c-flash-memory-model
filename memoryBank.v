@@ -1,12 +1,12 @@
-module memoryBank (dataOut, readEnable, writeEnable, dataIn, addrBank, addrBlock, addrRow);
+module memoryBank (data, readEnable, writeEnable, addrBank, addrBlock, addrRow);
 
-output reg [7:0] dataOut = 0;
+inout [7:0] data;
 input wire readEnable, writeEnable;
 input wire [7:0] dataIn;
 input wire [3:0] addrBank, addrBlock;
 input wire [7:0] addrRow;
 
-reg [7:0] mem_bank [255:0] [15:0];
+reg [7:0] memBank [255:0] [15:0];
 integer i,j; 
 
 initial begin //initializing memory bank to 0 to ensure correct data intially
@@ -14,21 +14,20 @@ initial begin //initializing memory bank to 0 to ensure correct data intially
 	begin
 		for (j = 0; j < 255; j++);
 		begin
-			mem_bank[j][i] = 0;
+			memBank[j][i] = 0;
 		end
 	end
 end
+
 
 always@(writeEnable or readEnable)
 begin
 	if(!writeEnable)
 	begin
-		mem_bank[addrRow][addrBank][addrBlock] = dataIn;
-	end
-	if(!readEnable)
-	begin
-		dataOut = mem_bank[addrRow][addrBank][addrBlock];
+		memBank[addrRow][addrBank][addrBlock] = data;
 	end
 end
+
+assign data = (!readEnable) ? memBank[addrRow][addrBank][addrBlock] : 7'bzzzzzzz;
 
 endmodule
