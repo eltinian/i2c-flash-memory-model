@@ -7,8 +7,8 @@ output reg writeEnable;
 //INPUTS SUPPLIED FROM TEST MODULE
 input wire EN; 
 input wire reset; 
-input wire data;
-input wire address; 
+input wire [7:0] data;
+input wire [15:0] address; 
 
 reg [4:0] count;
 
