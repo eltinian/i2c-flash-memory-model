@@ -1,4 +1,4 @@
-module topmodule(tpDataIO, tpEnable, tpAddressIn, tpReset);
+module topModule(tpDataIO, tpEnable, tpAddressIn, tpReset);
 
 input wire [7:0] tpDataIO;
 input wire tpEnable, tpReset;
