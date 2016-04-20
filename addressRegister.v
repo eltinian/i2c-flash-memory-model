@@ -1,4 +1,4 @@
-module addressRegister(addrOut, addrIn, enable)
+module addressRegister(addrOut, addrIn, enable);
 
 output reg [15:0] addrOut;
 input wire [15:0] addrIn;
